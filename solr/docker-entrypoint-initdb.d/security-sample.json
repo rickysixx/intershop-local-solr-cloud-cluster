@@ -1,0 +1,30 @@
+{
+  "authentication": {
+    "blockUnknown": true,
+    "class": "solr.BasicAuthPlugin",
+    "credentials": {
+      "solr": "IV0EHq1OnNrj6gvRCwvFwTrZ1+z1oBbnQdiVC3otuq0= Ndd7LKvVBAaZIF0QAVi1ekCfAJXr1GGfLtRUXhgrF8c=",
+      "intershop": "h7RwqetzpiRCFqUqwFx96nvqXK9CvkXFcE3ZAUw/J1A= hHEKaGRf/rUTTzJtF1fmSkUkx18QWKiGMWetID6Ftxk="
+    },
+    "realm": "Solr Login",
+    "forwardCredentials": false
+  },
+  "authorization": {
+    "class": "solr.RuleBasedAuthorizationPlugin",
+    "permissions": [
+      {
+        "name": "security-edit",
+        "role": "admin",
+        "index": 1
+      },
+      {
+        "name": "security-read",
+        "role": "admin",
+        "index": 2
+      }
+    ],
+    "user-role": {
+      "solr": "admin"
+    }
+  }
+}
