@@ -9,6 +9,7 @@ services:
       - ZK_HOST=zoo1:${ZK_PORT}
       - SOLR_HOST=solr1
       - SOLR_PORT=${SOLR_PORT}
+      - SOLR_VERSION=${SOLR_VERSION}
       - VERBOSE=true
     image: solr:${SOLR_VERSION}
     networks:
