@@ -33,7 +33,6 @@ services:
       - solr
     ports:
       - "${ZK_PORT}:${ZK_PORT}"
-      - 7001:7000
     restart: unless-stopped
     volumes:
       - zoo1_data:/data
