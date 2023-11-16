@@ -6,15 +6,15 @@ services:
     depends_on:
       - zoo1
     environment:
-      - ZK_HOST=zoo1:2181
+      - ZK_HOST=zoo1:${ZK_PORT}
       - SOLR_HOST=solr1
-      - SOLR_PORT=8981
+      - SOLR_PORT=${SOLR_PORT}
       - VERBOSE=true
-    image: solr:8.11.1
+    image: solr:${SOLR_VERSION}
     networks:
       - solr
     ports:
-     - "8981:8981"
+      - "${SOLR_PORT}:${SOLR_PORT}"
     restart: unless-stopped
     volumes:
       - ./solr/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
@@ -24,15 +24,15 @@ services:
     container_name: zoo1
     environment:
       ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=zoo1:2888:3888;2181
+      ZOO_SERVERS: server.1=zoo1:2888:3888;${ZK_PORT}
       ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
       ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7000 metricsProvider.exportJvmInfo=true"
     hostname: zoo1
-    image: zookeeper:3.8.0
+    image: zookeeper:${ZK_VERSION}
     networks:
       - solr
     ports:
-      - 2181:2181
+      - "${ZK_PORT}:${ZK_PORT}"
       - 7001:7000
     restart: unless-stopped
     volumes:
