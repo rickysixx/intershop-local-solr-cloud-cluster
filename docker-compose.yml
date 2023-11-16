@@ -28,7 +28,6 @@ services:
       ZOO_SERVERS: server.1=zoo1:2888:3888;${ZK_PORT}
       ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
       ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7000 metricsProvider.exportJvmInfo=true"
-    hostname: zoo1
     image: zookeeper:${ZK_VERSION}
     networks:
       - solr
